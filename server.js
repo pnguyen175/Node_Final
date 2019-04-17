@@ -55,6 +55,31 @@ app.get('/', (request, response) => {
     })
 });
 
+
+app.get('/converter',async(request,response)=> {
+    try {
+        var object = await axios.get('https://restcountries.eu/rest/v2/name/Crsgfrdanada?fullText=true');
+        var code = object.data[0].currencies[0].code;
+        var currency = await axios.get(`https://api.exchangeratesapi.io/latest?symbols=${code}&base=USD`);
+        var exchange = JSON.stringify(currency.data.rates[`${code}`]);
+        result = (`1 USD is worth ${exchange} CAD`);
+    }catch (e) {
+        if (coded_canada === undefined) {
+            return(
+                `Error: Country not exist`
+            );
+        } else if (rate === undefined) {
+            return('Error: Code does not exist')
+        } else {
+            return(
+                {
+                    error: `${e}`
+                })}}
+    response.render('converter.hbs',{
+        getCurrency: result
+    })
+});
+
 app.get('/info', (request, response) => {
     response.render('about.hbs', {
         title: 'About page',
