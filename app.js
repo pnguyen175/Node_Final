@@ -3,8 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const geocode = require('./backend.js');
 var port = process.env.PORT || 8080;
-// var port = 8080;
-//middleware
 var route = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
