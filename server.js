@@ -49,7 +49,8 @@ app.get('/', (request, response) => {
             'UVIC',
             'UofT',
             'Waterloo',
-            'Emily Carr'
+            'Emily Carr',
+            'Raph is the best'
         ]
     })
 });
